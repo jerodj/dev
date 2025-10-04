@@ -1,17 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useAccountingStore } from '../../../../store/accountingStore';
-import {
-  BookOpen,
-  FileText,
-  Calendar,
-  TrendingUp,
-  Plus,
-  Edit2,
-  Trash2,
-  Check,
-  X,
-  Download
-} from 'lucide-react';
+import { BookOpen, FileText, Calendar, TrendingUp, Plus, CreditCard as Edit2, Trash2, Check, X, Download } from 'lucide-react';
 import { format } from 'date-fns';
 
 type TabType = 'chart-of-accounts' | 'journal-entries' | 'reports' | 'fiscal-periods';
