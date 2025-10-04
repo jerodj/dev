@@ -3,7 +3,7 @@ import React, { useState, Component, useEffect } from 'react';
 import { usePOSStore } from '../../../../store/posStore';
 import { useERPStore } from '../../../../store/erpStore';
 import { LazyLoader } from '../../../../components/LazyLoader';
-import { Building, Users, Menu, Printer, Table as TableIcon, BarChart2, DollarSign, ShoppingCart, Package, Truck } from 'lucide-react';
+import { Building, Users, Menu, Printer, Table as TableIcon, BarChart2, DollarSign, ShoppingCart, Package, Truck, Calculator } from 'lucide-react';
 import { PrinterSettings } from '../PrinterSettings';
 import type { POSStore } from '../../../../types/pos';
 
@@ -18,6 +18,7 @@ const ExpenseManagement = React.lazy(() => import('./ExpenseManagement'));
 const PurchaseManagement = React.lazy(() => import('./PurchaseManagement'));
 const SupplierManagement = React.lazy(() => import('./SupplierManagement'));
 const AuditTrail = React.lazy(() => import('./AuditTrail'));
+const AccountingView = React.lazy(() => import('./AccountingView'));
 
 interface Tab {
   id: string;
@@ -105,7 +106,7 @@ export function AdminView() {
 
   const tabs: Tab[] = [
   //  { id: 'erp-dashboard', label: 'ERP Dashboard', icon: BarChart2 },
-    
+
 
     ...(currentUser?.role === 'admin' || currentUser?.role === 'manager' ? [
       //{ id: 'inventory-adjustments', label: 'Inventory Adjustments', icon: Package },
@@ -116,6 +117,7 @@ export function AdminView() {
     { id: 'menu', label: 'Menu Management', icon: Menu },
     { id: 'tables', label: 'Table Management', icon: TableIcon },
     { id: 'reports', label: 'Reports', icon: BarChart2 },
+    { id: 'accounting', label: 'Accounting', icon: Calculator },
     { id: 'printer', label: 'Printer Settings', icon: Printer },
    // { id: 'expenses', label: 'Expenses', icon: DollarSign },
     //{ id: 'purchases', label: 'Purchases', icon: ShoppingCart },
@@ -202,6 +204,11 @@ export function AdminView() {
             {activeTab === 'reports' && (
               <LazyLoader>
                 <Reports />
+              </LazyLoader>
+            )}
+            {activeTab === 'accounting' && (
+              <LazyLoader>
+                <AccountingView />
               </LazyLoader>
             )}
           {activeTab === 'printer' && (
